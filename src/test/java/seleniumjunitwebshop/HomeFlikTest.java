@@ -23,7 +23,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomeFlikTest {
-	static WebDriver driver = new FirefoxDriver();
+	WebDriver driver = new FirefoxDriver();
 	
 	@FindBy(xpath = "//*[@value='Search Products']")
 	WebElement searchProducts;
@@ -118,17 +118,18 @@ public class HomeFlikTest {
 	
 	@BeforeClass
 	public static void getBeforeClass() {
-		driver.get("http://store.demoqa.com/");
+		//driver.get("http://store.demoqa.com/");
 	}
 	
 	@Before
 	public void getBefore() {
+		driver.get("http://store.demoqa.com/");
 		PageFactory.initElements(driver, this);
 	}
 	
 	@After
 	public void getAfter() {
-		
+		//driver.close();
 	}
 	
 	@AfterClass
@@ -137,10 +138,22 @@ public class HomeFlikTest {
 	}
 	
 	@Test
-	public void verifyBuyNowButton() {
+	public void verifyBuyNowButtonAndIPodNanoBlueImageTest() {
 		buyNow.click();
 		assertEquals("Unexpected product page from Buy Now button", "Magic Mouse | ONLINE STORE", driver.getTitle());
+		
+		iPodNanoBlue.click();
+		assertEquals("Unexpected product page from iPod Nano Blue image link", "iPod Nano Blue | ONLINE STORE", driver.getTitle());
+		
+		driver.close();
 	}
+	
+	@Test
+	public void verifyMoreInfoLinkTest() {
+		moreInfo.click();
+		assertEquals("Unexpected product page from More Info link", "Magic Mouse | ONLINE STORE", driver.getTitle());
+	}
+	
 	
 	////@Test
 	////public void testfall1() {
