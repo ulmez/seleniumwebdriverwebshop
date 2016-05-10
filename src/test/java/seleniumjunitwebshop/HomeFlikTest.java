@@ -197,6 +197,27 @@ public class HomeFlikTest {
 		//driver.close();
 	}
 	
+	@Test
+	public void verifyManualClickOnChoiseInCarousel() {
+		List<String> productNames = new ArrayList<>();
+		for(int i = slides.size()-1; i >= 0; i--) {
+			((WebElement) selectedSlides.get(i)).click();
+			
+			try {
+				Thread.sleep(3000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			productNames.add(slides.get(0).getText());
+		}
+		
+		assertEquals("Unexpected product amount from carousel", 3, productNames.size());
+	}
+	
+	
+	
+	
 	
 	////@Test
 	////public void testfall1() {
