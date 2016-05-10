@@ -31,8 +31,8 @@ public class HomeFlikTest {
 	@FindBy(xpath ="//*[@class='buynow']")
 	WebElement buyNow;
 	
-	@FindBy(xpath ="//*[@alt='iPod Nano Blue']")
-	WebElement iPodNanoBlue;
+	@FindBy(xpath ="//*[@class='featured_image']/a")
+	WebElement magicMouse;
 	
 	@FindBy(xpath ="//*[@href='http://store.demoqa.com/']")
 	WebElement home;
@@ -40,7 +40,7 @@ public class HomeFlikTest {
 	@FindBy(xpath ="//*[@title='More Info']")
 	WebElement moreInfo;
 	
-	@FindBy(xpath ="//*[@class='slide']")
+	@FindBy(xpath ="//*[@class='product_description']/h2")
 	List<WebElement> slides;
 	
 	@FindBy(xpath ="//*[@id='slide_menu']/a")
@@ -129,7 +129,7 @@ public class HomeFlikTest {
 	
 	@After
 	public void getAfter() {
-		//driver.close();
+		driver.close();
 	}
 	
 	@AfterClass
@@ -142,16 +142,59 @@ public class HomeFlikTest {
 		buyNow.click();
 		assertEquals("Unexpected product page from Buy Now button", "Magic Mouse | ONLINE STORE", driver.getTitle());
 		
-		iPodNanoBlue.click();
-		assertEquals("Unexpected product page from iPod Nano Blue image link", "iPod Nano Blue | ONLINE STORE", driver.getTitle());
+		//driver.close();
+	}
+	
+	@Test
+	public void verifyMAgicMouseImageTest() {
+		magicMouse.click();
+		assertEquals("Unexpected product page from Magic Mouse image link", "Magic Mouse | ONLINE STORE", driver.getTitle());
 		
-		driver.close();
+		//driver.close();
 	}
 	
 	@Test
 	public void verifyMoreInfoLinkTest() {
 		moreInfo.click();
 		assertEquals("Unexpected product page from More Info link", "Magic Mouse | ONLINE STORE", driver.getTitle());
+		
+		//driver.close();
+	}
+	
+	@Test
+	public void verifyAllThreeProductsFromCarousel() {
+		//System.out.println(slides.size());
+		List<String> productNames = new ArrayList<>();
+		productNames.add("Magic Mouse");
+		productNames.add("iPhone 5");
+		productNames.add("iPod Nano Blue");
+		
+		boolean allProductsExistInCarousel = false;
+		
+		for(int i = 0; i < 5; i++) {
+			//System.out.println(slides.get(0).getText());
+			
+			if(productNames.contains(slides.get(0).getText())) {
+				allProductsExistInCarousel = true;
+			} else {
+				allProductsExistInCarousel = false;
+				break;
+			}
+			
+			//System.out.println(allProductsExistInCarousel);
+			//System.out.println(slides.get(0).getText());
+			
+			try {
+				Thread.sleep(4000);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//System.out.println(allProductsExistInCarousel);
+		assertTrue("Unexpected product in carousel", allProductsExistInCarousel);
+		
+		//driver.close();
 	}
 	
 	
