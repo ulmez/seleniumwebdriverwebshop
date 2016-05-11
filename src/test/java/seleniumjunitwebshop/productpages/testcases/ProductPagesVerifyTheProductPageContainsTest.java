@@ -56,7 +56,7 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 	
 	@After
 	public void getAfter() {
-		//driver.close();
+		driver.close();
 	}
 	
 	@AfterClass
@@ -64,7 +64,7 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		
 	}
 	
-	/*@Test
+	@Test
 	public void verifyProductPageContainsTitleTest() {
 		buyNow.click();
 		
@@ -101,7 +101,7 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		}
 		
 		assertTrue("Unexpected price on productpage", priceExists);
-	}*/
+	}
 	
 	@Test
 	public void verifyPutProductInBasketTest() {
@@ -113,8 +113,6 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		wait.pollingEvery(100, TimeUnit.MILLISECONDS);
 		
 		goToCheckoutButton.click();
-		
-		System.out.println(quantityTextField.getAttribute("value"));
 		
 		assertEquals("Unexpected quantity on checkoutpage", 1, Integer.parseInt(quantityTextField.getAttribute("value")));
 	}
