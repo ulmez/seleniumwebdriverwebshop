@@ -102,7 +102,7 @@ public class ProductPagesVerifyProductWithStarsTest {
 		}
 		
 		assertTrue("Unexpected rating message", ratingMessageEvaluatedOnlyOnce);
-	}*/
+	}
 	
 	@Test
 	public void verifyGradeOneTwoFiveTest() {
@@ -128,5 +128,19 @@ public class ProductPagesVerifyProductWithStarsTest {
 		}
 		
 		assertTrue("Unexpected response when clicking star", verifyClickOnAllFiveStars);
+	}*/
+	
+	@Test
+	public void verifyNotPossibleToGradeAlreadyGradedProductTest() {
+		buyNow.click();
+		starRatingClick.click();
+		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='message']")));
+		wait.pollingEvery(100, TimeUnit.MILLISECONDS);
+		
+		String rateMessage = ratedYesOrNoMessage.getText();
+		
+		assertEquals("Unexpected response when clicking already rated product star", "Sorry, you already rated!", rateMessage);
 	}
 }
