@@ -30,6 +30,9 @@ public class HomeFlikLatestBlogPostTest {
 	@FindBy(xpath ="//*[@class='prodtitle']")
 	WebElement productTitle;
 	
+	@FindBy(xpath ="//*[@class='footer_featured']/ul/li/a/img")
+	List<WebElement> latestBlogPostImages;
+	
 	// /html/body/div[2]/div/div/div/div/div/div/div[1]/div[3]/div/a/span
 	
 	/*@FindBy(id = "answer1")
@@ -120,33 +123,34 @@ public class HomeFlikLatestBlogPostTest {
 	public void verifyLatestBlogPostSectionShowProductsTest() {
 		//System.out.println(latestBlogPost.size());
 		assertEquals("Unexpected amount of Latest Blog Post products", 4, latestBlogPost.size());
-	}*/
+	}
 	
 	@Test
 	public void verifyLatestBlogPostSectionLeadToProductPageTest() {
 		String productName = latestBlogPost.get(2).getText().substring(0, latestBlogPost.get(2).getText().indexOf("\n")).trim();
-		
-		//System.out.println(productName.indexOf("."));
-		//System.out.println(productName);
 		
 		if(productName.indexOf(".") != -1) {
 			String productNameTemp = productName.substring(0, productName.indexOf("."));
 			productName = productNameTemp;
 		}
 		
-		//System.out.println(productName.substring(0, productName.indexOf(".")));
-		//System.out.println(productName);
-		
 		latestBlogPost.get(2).click();
 		
-		//WebDriverWait wait = new WebDriverWait(driver, 10);
-		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='prodtitle']")));
-		//wait.pollingEvery(100, TimeUnit.MILLISECONDS);
-		
-		//System.out.println(productTitle.getText().substring(0, productName.length()));
-		//latestBlogPost.get(2).click();
-		
 		assertEquals("Unexpected product on the product page from the Latest Blog Post section", productName, productTitle.getText().substring(0, productName.length()));
+	}*/
+	
+	@Test
+	public void verifyLatestBlogPostSectionImageLeadToProductPageTest() {
+		//System.out.println(latestBlogPostImages.get(2).getAttribute("title"));
+		String productName = latestBlogPostImages.get(2).getAttribute("title").replace("–", "-").trim();
+		
+		//System.out.println(productName);
+		
+		latestBlogPostImages.get(2).click();
+		
+		//System.out.println(productTitle.getText().replace("–", "-").trim());
+		
+		assertEquals("Unexpected product on the product page from the Latest Blog Post image click", productName, productTitle.getText().replace("–", "-").trim());
 	}
 	
 	
