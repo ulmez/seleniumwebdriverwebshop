@@ -1,17 +1,23 @@
 package seleniumjunitwebshop.productpages.testcases;
 
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+
+import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class ProductPagesVerifyTheProductPageContainsTest {
 	WebDriver driver = new FirefoxDriver();
@@ -28,6 +34,15 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 	@FindBy(xpath = "//*[@class='currentprice pricedisplay product_price_40']")
 	WebElement productPrice;
 	
+	@FindBy(xpath = "//*[@class='wpsc_buy_button']")
+	WebElement addToCartButton;
+	
+	@FindBy(xpath = "//*[@class='go_to_checkout']")
+	WebElement goToCheckoutButton;
+	
+	@FindBy(xpath = "//*[@name='quantity']")
+	WebElement quantityTextField;
+	
 	@BeforeClass
 	public static void getBeforeClass() {
 		//driver.get("http://store.demoqa.com/");
@@ -41,7 +56,7 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 	
 	@After
 	public void getAfter() {
-		driver.close();
+		//driver.close();
 	}
 	
 	@AfterClass
@@ -49,7 +64,7 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		
 	}
 	
-	@Test
+	/*@Test
 	public void verifyProductPageContainsTitleTest() {
 		buyNow.click();
 		
@@ -86,5 +101,21 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		}
 		
 		assertTrue("Unexpected price on productpage", priceExists);
+	}*/
+	
+	@Test
+	public void verifyPutProductInBasketTest() {
+		buyNow.click();
+		addToCartButton.click();
+		
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='go_to_checkout']")));
+		wait.pollingEvery(100, TimeUnit.MILLISECONDS);
+		
+		goToCheckoutButton.click();
+		
+		System.out.println(quantityTextField.getAttribute("value"));
+		
+		assertEquals("Unexpected quantity on checkoutpage", 1, Integer.parseInt(quantityTextField.getAttribute("value")));
 	}
 }

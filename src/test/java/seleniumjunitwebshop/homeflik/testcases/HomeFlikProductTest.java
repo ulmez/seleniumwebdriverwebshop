@@ -81,7 +81,7 @@ public class HomeFlikProductTest {
 	}
 	
 	@Test
-	public void verifyAllThreeProductsFromCarousel() {
+	public void verifyAllThreeProductsFromCarouselTest() {
 		List<String> productNames = new ArrayList<>();
 		productNames.add("Magic Mouse");
 		productNames.add("iPhone 5");
@@ -108,7 +108,7 @@ public class HomeFlikProductTest {
 	}
 	
 	@Test
-	public void verifyManualClickOnChoiseInCarousel() {
+	public void verifyManualClickOnChoiseInCarouselTest() {
 		List<String> productNames = new ArrayList<>();
 		for(int i = slides.size()-1; i >= 0; i--) {
 			((WebElement) selectedSlides.get(i)).click();
