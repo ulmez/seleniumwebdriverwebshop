@@ -1,10 +1,6 @@
 package seleniumjunitwebshop.productpages.testcases;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -45,7 +41,7 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 	
 	@After
 	public void getAfter() {
-		//driver.close();
+		driver.close();
 	}
 	
 	@AfterClass
@@ -53,11 +49,9 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		
 	}
 	
-	/*@Test
+	@Test
 	public void verifyProductPageContainsTitleTest() {
 		buyNow.click();
-		
-		System.out.println(productTitle.getText());
 		
 		boolean titleExists = false;
 		
@@ -72,8 +66,6 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 	public void verifyProductPageContainsDescriptionTest() {
 		buyNow.click();
 		
-		System.out.println(productDescription.getText());
-		
 		boolean descriptionExists = false;
 		
 		if(productDescription != null && productDescription.getText().length() > 0) {
@@ -81,13 +73,11 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		}
 		
 		assertTrue("Unexpected description on productpage", descriptionExists);
-	}*/
+	}
 	
 	@Test
 	public void verifyProductPageContainsPriceTest() {
 		buyNow.click();
-		
-		System.out.println(productPrice.getText());
 		
 		boolean priceExists = false;
 		
