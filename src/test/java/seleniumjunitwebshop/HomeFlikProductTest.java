@@ -22,7 +22,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class HomeFlikTest {
+public class HomeFlikProductTest {
 	WebDriver driver = new FirefoxDriver();
 	
 	@FindBy(xpath = "//*[@value='Search Products']")
@@ -49,7 +49,7 @@ public class HomeFlikTest {
 	@FindBy(xpath ="//*[@class='footer_featured']/ul/li")
 	List<WebElement> latestBlogPost;
 	
-	List<String> temp = new ArrayList<>();
+	//List<String> temp = new ArrayList<>();
 	
 	// /html/body/div[2]/div/div/div/div/div/div/div[1]/div[3]/div/a/span
 	
