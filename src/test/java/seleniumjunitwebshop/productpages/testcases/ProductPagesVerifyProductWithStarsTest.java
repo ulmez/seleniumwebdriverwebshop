@@ -32,6 +32,12 @@ public class ProductPagesVerifyProductWithStarsTest {
 	@FindBy(xpath ="//*[@class='message']")
 	WebElement ratedYesOrNoMessage;
 	
+	@FindBy(xpath ="//*[@class='star-rating-control']/div")
+	List<WebElement> stars;
+	
+	@FindBy(xpath ="//*[@class='wpec-star-rating rater-0 star star-rating-applied star-rating-live star-rating-on']")
+	List<WebElement> numberOfStars;
+	
 	@BeforeClass
 	public static void getBeforeClass() {
 		//driver.get("http://store.demoqa.com/");
@@ -53,8 +59,8 @@ public class ProductPagesVerifyProductWithStarsTest {
 		
 	}
 	
-	@Test
-	public void verifyProductRatedOnlyOnce() {
+	/*@Test
+	public void verifyProductRatedOnlyOnceTest() {
 		buyNow.click();
 		
 		//System.out.println(starRatingClick);
@@ -96,5 +102,31 @@ public class ProductPagesVerifyProductWithStarsTest {
 		}
 		
 		assertTrue("Unexpected rating message", ratingMessageEvaluatedOnlyOnce);
+	}*/
+	
+	@Test
+	public void verifyGradeOneTwoFiveTest() {
+		buyNow.click();
+		
+		boolean verifyClickOnAllFiveStars = false;
+		
+		for(int i = 1; i < stars.size(); i++) {
+			stars.get(i).click();
+			
+			if(Integer.parseInt(stars.get(i).getText()) == numberOfStars.size()) {
+				verifyClickOnAllFiveStars = true;
+			} else {
+				verifyClickOnAllFiveStars = false;
+				break;
+			}
+			
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='message']")));
+			wait.pollingEvery(100, TimeUnit.MILLISECONDS);
+			
+			driver.navigate().refresh();
+		}
+		
+		assertTrue("Unexpected response when clicking star", verifyClickOnAllFiveStars);
 	}
 }
