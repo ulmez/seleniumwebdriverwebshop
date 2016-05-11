@@ -26,6 +26,9 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 	@FindBy(xpath = "//*[@class='prodtitle']")
 	WebElement productTitle;
 	
+	@FindBy(xpath = "//*[@class='product_description']/p")
+	WebElement productDescription;
+	
 	@BeforeClass
 	public static void getBeforeClass() {
 		//driver.get("http://store.demoqa.com/");
@@ -47,7 +50,7 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		
 	}
 	
-	@Test
+	/*@Test
 	public void verifyProductPageContainsTitleTest() {
 		buyNow.click();
 		
@@ -60,5 +63,20 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		}
 		
 		assertTrue("Unexpected title on productpage", titleExists);
+	}*/
+	
+	@Test
+	public void verifyProductPageContainsDescriptionTest() {
+		buyNow.click();
+		
+		System.out.println(productDescription.getText());
+		
+		boolean descriptionExists = false;
+		
+		if(productDescription != null && productDescription.getText().length() > 0) {
+			descriptionExists = true;
+		}
+		
+		assertTrue("Unexpected description on productpage", descriptionExists);
 	}
 }
