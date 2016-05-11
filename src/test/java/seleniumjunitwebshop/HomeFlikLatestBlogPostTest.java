@@ -33,6 +33,9 @@ public class HomeFlikLatestBlogPostTest {
 	@FindBy(xpath ="//*[@class='footer_featured']/ul/li/a/img")
 	List<WebElement> latestBlogPostImages;
 	
+	@FindBy(xpath ="//*[@title='More Details']")
+	List<WebElement> latestBlogPostMoreDetails;
+	
 	// /html/body/div[2]/div/div/div/div/div/div/div[1]/div[3]/div/a/span
 	
 	/*@FindBy(id = "answer1")
@@ -137,7 +140,7 @@ public class HomeFlikLatestBlogPostTest {
 		latestBlogPost.get(2).click();
 		
 		assertEquals("Unexpected product on the product page from the Latest Blog Post section", productName, productTitle.getText().substring(0, productName.length()));
-	}*/
+	}
 	
 	@Test
 	public void verifyLatestBlogPostSectionImageLeadToProductPageTest() {
@@ -151,6 +154,24 @@ public class HomeFlikLatestBlogPostTest {
 		//System.out.println(productTitle.getText().replace("–", "-").trim());
 		
 		assertEquals("Unexpected product on the product page from the Latest Blog Post image click", productName, productTitle.getText().replace("–", "-").trim());
+	}*/
+	
+	@Test
+	public void verifyLatestBlogPostMoreDetailsLinkLeadToProductPageTest() {
+		//System.out.println(latestBlogPostMoreDetails.get(2).getAttribute("href"));
+		
+		String moreDetailsUrlClicked = latestBlogPostMoreDetails.get(2).getAttribute("href");
+		
+		latestBlogPostMoreDetails.get(2).click();
+		
+		//System.out.println(driver.getCurrentUrl());
+		
+		String productPageUrl = driver.getCurrentUrl();
+		
+		//System.out.println(moreDetailsUrlClicked);
+		//System.out.println(productPageUrl);
+		
+		assertEquals("Unexpected product on the product page from the Latest Blog Post More Details click", moreDetailsUrlClicked, productPageUrl);
 	}
 	
 	
