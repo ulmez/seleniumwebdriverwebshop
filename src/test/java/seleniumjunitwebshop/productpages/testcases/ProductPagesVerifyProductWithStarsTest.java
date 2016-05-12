@@ -51,7 +51,7 @@ public class ProductPagesVerifyProductWithStarsTest {
 	
 	@After
 	public void getAfter() {
-		//driver.close();
+		driver.close();
 	}
 	
 	@AfterClass
@@ -59,19 +59,14 @@ public class ProductPagesVerifyProductWithStarsTest {
 		
 	}
 	
-	/*@Test
+	@Test
 	public void verifyProductRatedOnlyOnceTest() {
 		buyNow.click();
-		
-		//System.out.println(starRatingClick);
-		
 		starRatingClick.click();
 		
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='message']")));
 		wait.pollingEvery(100, TimeUnit.MILLISECONDS);
-		
-		//System.out.println(ratedYesOrNoMessage.getText());
 		
 		String ratedMessage1 = ratedYesOrNoMessage.getText();
 		
@@ -79,11 +74,8 @@ public class ProductPagesVerifyProductWithStarsTest {
 		
 		starRatingClick.click();
 		
-		//WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='message']")));
 		wait.pollingEvery(100, TimeUnit.MILLISECONDS);
-		
-		//System.out.println(ratedYesOrNoMessage.getText());
 		
 		String ratedMessage2 = ratedYesOrNoMessage.getText();
 		
@@ -91,9 +83,6 @@ public class ProductPagesVerifyProductWithStarsTest {
 		System.out.println(ratedMessage2);
 		
 		boolean ratingMessageEvaluatedOnlyOnce = false;
-		
-		//ratedMessage1 = "Thanks for rating!";
-		//ratedMessage2 = "Thanks for rating!";
 		
 		if(ratedMessage1.equals("Thanks for rating!") && ratedMessage2.equals("Thanks for rating!")) {
 			ratingMessageEvaluatedOnlyOnce = false;
@@ -128,7 +117,7 @@ public class ProductPagesVerifyProductWithStarsTest {
 		}
 		
 		assertTrue("Unexpected response when clicking star", verifyClickOnAllFiveStars);
-	}*/
+	}
 	
 	@Test
 	public void verifyNotPossibleToGradeAlreadyGradedProductTest() {
