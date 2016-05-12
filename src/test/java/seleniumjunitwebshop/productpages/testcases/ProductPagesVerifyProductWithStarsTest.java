@@ -79,9 +79,6 @@ public class ProductPagesVerifyProductWithStarsTest {
 		
 		String ratedMessage2 = ratedYesOrNoMessage.getText();
 		
-		System.out.println(ratedMessage1);
-		System.out.println(ratedMessage2);
-		
 		boolean ratingMessageEvaluatedOnlyOnce = false;
 		
 		if(ratedMessage1.equals("Thanks for rating!") && ratedMessage2.equals("Thanks for rating!")) {
