@@ -1,10 +1,12 @@
 package seleniumjunitwebshop.checkoutyourcart.testcases;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
@@ -13,6 +15,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -43,6 +46,15 @@ public class CheckoutYourCartTest {
 	@FindBy(xpath ="//*[@class='slide1']")
 	WebElement basketArea;
 	
+	@FindBy(xpath ="//*[@class='slide1']/table/tbody/tr/td/a")
+	List<WebElement> productNamesInBasketArea;
+	
+	@FindBy(xpath ="//*[@name='quantity']")
+	List<WebElement> quantityOfProductsInBasketArea;
+	
+	@FindBy(xpath ="//*[@class='search']")
+	WebElement searchProductField;
+	
 	@BeforeClass
 	public static void getBeforeClass() {
 		//driver.get("http://store.demoqa.com/");
@@ -56,7 +68,7 @@ public class CheckoutYourCartTest {
 	
 	@After
 	public void getAfter() {
-		//driver.close();
+		driver.close();
 	}
 	
 	@AfterClass
@@ -72,7 +84,56 @@ public class CheckoutYourCartTest {
 		assertFalse("Unexpected cart area", isWebElementPresent(By.xpath("//*[@class='slide1']")));
 	}
 	
-	public boolean isWebElementPresent(By by) {
+	@Test
+	public void verifyTheProductsPutInTheCartTest() {
+		List<String> productNames = new ArrayList<>();
+		productNames.add("iPhone 5");
+		productNames.add("iPhone 5");
+		productNames.add("Apple 27 inch Thunderbolt Display");
+		productNames.add("Sennheiser RS 120");
+		productNames.add("Sennheiser RS 120");
+		productNames.add("Sennheiser RS 120");
+		productNames.add("Sennheiser RS 120");
+		
+		Map<String, Integer> productNamesAndQuantity = new HashMap<>();
+		productNamesAndQuantity.put("iPhone 5", 2);
+		productNamesAndQuantity.put("Apple 27 inch Thunderbolt Display", 1);
+		productNamesAndQuantity.put("Sennheiser RS 120", 4);
+		
+		for(String productName: productNames) {
+			searchProductField.sendKeys(productName);
+			searchProductField.sendKeys(Keys.ENTER);
+			
+			WebDriverWait wait = new WebDriverWait(driver, 10);
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='wpsc_buy_button']")));
+			wait.pollingEvery(100, TimeUnit.MILLISECONDS);
+			
+			addToCartButton.click();
+			
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='go_to_checkout']")));
+			wait.pollingEvery(100, TimeUnit.MILLISECONDS);
+			
+			goToCheckoutButton.click();
+		}
+		
+		List<Integer> quantityOfProductsInBasketAreaEdited = new ArrayList<>();
+		
+		for(WebElement element: quantityOfProductsInBasketArea) {
+			if(Integer.parseInt(element.getAttribute("value")) != 0) {
+				quantityOfProductsInBasketAreaEdited.add(Integer.parseInt(element.getAttribute("value")));
+			}
+		}
+		
+		Map<String, Integer> productNamesAndQuantityEdited = new HashMap<>();
+		
+		for(int i = 0; i < productNamesInBasketArea.size(); i++) {
+			productNamesAndQuantityEdited.put(productNamesInBasketArea.get(i).getText(), quantityOfProductsInBasketAreaEdited.get(i));
+		}
+		
+		assertEquals("Unexpected list of products and quantity in cart area", productNamesAndQuantity, productNamesAndQuantityEdited);
+	}
+	
+	private boolean isWebElementPresent(By by) {
 	    try {
 	        driver.findElement(by);
 	        return true;
