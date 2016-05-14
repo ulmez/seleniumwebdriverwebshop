@@ -49,13 +49,16 @@ public class HomeFlikLatestBlogPostTest {
 		
 	}
 	
+	// 1. b) *****************************
 	@Test
 	public void verifyLatestBlogPostSectionShowProductsTest() {
+		// i.
 		assertEquals("Unexpected amount of Latest Blog Post products", 4, latestBlogPost.size());
 	}
 	
 	@Test
 	public void verifyLatestBlogPostSectionLeadToProductPageTest() {
+		// ii.
 		String productName = latestBlogPost.get(2).getText().substring(0, latestBlogPost.get(2).getText().indexOf("\n")).trim();
 		
 		if(productName.indexOf(".") != -1) {
@@ -70,6 +73,7 @@ public class HomeFlikLatestBlogPostTest {
 	
 	@Test
 	public void verifyLatestBlogPostSectionImageLeadToProductPageTest() {
+		// iii.
 		String productName = latestBlogPostImages.get(2).getAttribute("title").replace("–", "-").trim();
 		
 		latestBlogPostImages.get(2).click();
@@ -79,6 +83,7 @@ public class HomeFlikLatestBlogPostTest {
 	
 	@Test
 	public void verifyLatestBlogPostMoreDetailsLinkLeadToProductPageTest() {
+		// iv.
 		String moreDetailsUrlClicked = latestBlogPostMoreDetails.get(2).getAttribute("href");
 		
 		latestBlogPostMoreDetails.get(2).click();
@@ -87,4 +92,5 @@ public class HomeFlikLatestBlogPostTest {
 		
 		assertEquals("Unexpected product on the product page from the Latest Blog Post More Details click", moreDetailsUrlClicked, productPageUrl);
 	}
+	// ***********************************
 }

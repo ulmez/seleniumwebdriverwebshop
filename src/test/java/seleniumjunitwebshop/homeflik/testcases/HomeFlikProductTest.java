@@ -62,26 +62,31 @@ public class HomeFlikProductTest {
 		
 	}
 	
+	// 1. a) *****************************
 	@Test
 	public void verifyBuyNowButtonAndIPodNanoBlueImageTest() {
+		// i.
 		buyNow.click();
 		assertEquals("Unexpected product page from Buy Now button", "Magic Mouse | ONLINE STORE", driver.getTitle());
 	}
 	
 	@Test
-	public void verifyMAgicMouseImageTest() {
+	public void verifyMagicMouseImageTest() {
+		// ii.
 		magicMouse.click();
 		assertEquals("Unexpected product page from Magic Mouse image link", "Magic Mouse | ONLINE STORE", driver.getTitle());
 	}
 	
 	@Test
 	public void verifyMoreInfoLinkTest() {
+		// iii.
 		moreInfo.click();
 		assertEquals("Unexpected product page from More Info link", "Magic Mouse | ONLINE STORE", driver.getTitle());
 	}
 	
 	@Test
 	public void verifyAllThreeProductsFromCarouselTest() {
+		// iv.
 		List<String> productNames = new ArrayList<>();
 		productNames.add("Magic Mouse");
 		productNames.add("iPhone 5");
@@ -109,6 +114,7 @@ public class HomeFlikProductTest {
 	
 	@Test
 	public void verifyManualClickOnChoiseInCarouselTest() {
+		// v.
 		List<String> productNames = new ArrayList<>();
 		for(int i = slides.size()-1; i >= 0; i--) {
 			((WebElement) selectedSlides.get(i)).click();
@@ -124,4 +130,5 @@ public class HomeFlikProductTest {
 		
 		assertEquals("Unexpected product amount from carousel", 3, productNames.size());
 	}
+	// ***********************************
 }

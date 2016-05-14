@@ -2,7 +2,6 @@ package seleniumjunitwebshop.checkoutyourcart.testcases;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -55,6 +54,9 @@ public class CheckoutYourCartTest {
 	@FindBy(xpath ="//*[@class='search']")
 	WebElement searchProductField;
 	
+	@FindBy(xpath ="/html/body/div[2]/div/div/div/div/div/article/div/div[2]/div[1]/table/tbody/tr[2]/td[6]/form/input[4]")
+	WebElement removeProductButton;
+	
 	@BeforeClass
 	public static void getBeforeClass() {
 		//driver.get("http://store.demoqa.com/");
@@ -76,16 +78,23 @@ public class CheckoutYourCartTest {
 		
 	}
 	
+	// 6. a) *******************************
 	@Test
 	public void verifyEmptyBasketTest() {
+		// i.
 		checkoutBasketButton.click();
 		
 		assertEquals("Unexpected message for empty cart", "Oops, there is nothing in your cart.", basketMessage.getText());
+		
+		// ii.
 		assertFalse("Unexpected cart area", isWebElementPresent(By.xpath("//*[@class='slide1']")));
 	}
+	// *************************************
 	
+	// 6.) *********************************
 	@Test
-	public void verifyTheProductsPutInTheCartTest() {
+	public void verifyTheProductsPutInTheCartTest() throws InterruptedException {
+		// b
 		List<String> productNames = new ArrayList<>();
 		productNames.add("iPhone 5");
 		productNames.add("iPhone 5");
@@ -131,7 +140,13 @@ public class CheckoutYourCartTest {
 		}
 		
 		assertEquals("Unexpected list of products and quantity in cart area", productNamesAndQuantity, productNamesAndQuantityEdited);
+		
+		// c
+		removeProductButton.click();
+		
+		assertFalse("Unexpected removing of product in cart", productNamesInBasketArea.contains("iPhone 5"));
 	}
+	// *************************************
 	
 	private boolean isWebElementPresent(By by) {
 	    try {

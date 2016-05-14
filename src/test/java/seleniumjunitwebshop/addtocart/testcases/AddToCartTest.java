@@ -68,6 +68,7 @@ public class AddToCartTest {
 		
 	}
 	
+	// 5. a, b, c) *************************
 	@Test
 	public void verifyLatestBlogPostSectionShowProductsTest() {
 		String firstPageProductTitleTemp = firstPageProductTitle.getText();
@@ -104,4 +105,5 @@ public class AddToCartTest {
 		
 		assertEquals("Unexpected title of Add To Cart ordering", "Calculate Shipping Price", continueShoppingVerification.getText());
 	}
+	// *************************************
 }

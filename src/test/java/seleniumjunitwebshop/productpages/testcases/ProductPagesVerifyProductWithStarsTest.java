@@ -59,8 +59,10 @@ public class ProductPagesVerifyProductWithStarsTest {
 		
 	}
 	
+	// 2. c) *****************************
 	@Test
 	public void verifyProductRatedOnlyOnceTest() {
+		// i.
 		buyNow.click();
 		starRatingClick.click();
 		
@@ -92,6 +94,7 @@ public class ProductPagesVerifyProductWithStarsTest {
 	
 	@Test
 	public void verifyGradeOneTwoFiveTest() {
+		// ii.
 		buyNow.click();
 		
 		boolean verifyClickOnAllFiveStars = false;
@@ -118,6 +121,7 @@ public class ProductPagesVerifyProductWithStarsTest {
 	
 	@Test
 	public void verifyNotPossibleToGradeAlreadyGradedProductTest() {
+		// iii.
 		buyNow.click();
 		starRatingClick.click();
 		
@@ -129,4 +133,5 @@ public class ProductPagesVerifyProductWithStarsTest {
 		
 		assertEquals("Unexpected response when clicking already rated product star", "Sorry, you already rated!", rateMessage);
 	}
+	// ***********************************
 }

@@ -37,8 +37,10 @@ public class ProductCategoryFlikVerifyAllProductCategoriesTest {
 		
 	}
 	
+	// 3. a) *****************************
 	@Test
 	public void verifyAllCategoriesAndThatEachCategoryLeadsToThatCategoryTest() throws InterruptedException {
+		// i.
 		Actions action = new Actions(driver);
 		
 		action.moveToElement(driver.findElement(By.xpath("//*[@href='http://store.demoqa.com/products-page/product-category/']"))).build().perform();
@@ -70,4 +72,5 @@ public class ProductCategoryFlikVerifyAllProductCategoriesTest {
 		driver.findElement(By.id("menu-item-39")).click();
 		assertEquals("Unexpected category calue", "MacBooks", driver.findElement(By.xpath("//*[@class='entry-title']")).getText());
 	}
+	// ***********************************
 }

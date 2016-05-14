@@ -64,8 +64,10 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		
 	}
 	
+	// 2. a) *****************************
 	@Test
 	public void verifyProductPageContainsTitleTest() {
+		// i.
 		buyNow.click();
 		
 		boolean titleExists = false;
@@ -79,6 +81,7 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 	
 	@Test
 	public void verifyProductPageContainsDescriptionTest() {
+		// ii.
 		buyNow.click();
 		
 		boolean descriptionExists = false;
@@ -92,6 +95,7 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 	
 	@Test
 	public void verifyProductPageContainsPriceTest() {
+		// iii.
 		buyNow.click();
 		
 		boolean priceExists = false;
@@ -102,7 +106,9 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		
 		assertTrue("Unexpected price on productpage", priceExists);
 	}
+	// ***********************************
 	
+	// 2. b) *****************************
 	@Test
 	public void verifyPutProductInBasketTest() {
 		buyNow.click();
@@ -116,4 +122,5 @@ public class ProductPagesVerifyTheProductPageContainsTest {
 		
 		assertEquals("Unexpected quantity on checkoutpage", 1, Integer.parseInt(quantityTextField.getAttribute("value")));
 	}
+	// ***********************************
 }

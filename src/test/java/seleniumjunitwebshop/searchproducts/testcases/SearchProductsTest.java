@@ -43,6 +43,7 @@ public class SearchProductsTest {
 		
 	}
 	
+	// 4.) *******************************
 	@Test
 	public void verifySearchOfProductTest() {
 		searchProduct.sendKeys("Apple 27 inch Thunderbolt Display");
@@ -50,4 +51,5 @@ public class SearchProductsTest {
 		
 		assertEquals("Unexpected search result", "Apple 27 inch Thunderbolt Display", productTitle.getText().trim());
 	}
+	// ***********************************
 }
