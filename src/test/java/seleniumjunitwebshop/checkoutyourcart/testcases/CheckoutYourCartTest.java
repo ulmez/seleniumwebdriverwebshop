@@ -70,7 +70,7 @@ public class CheckoutYourCartTest {
 	
 	@After
 	public void getAfter() {
-		driver.close();
+		//driver.close();
 	}
 	
 	@AfterClass
@@ -145,6 +145,9 @@ public class CheckoutYourCartTest {
 		removeProductButton.click();
 		
 		assertFalse("Unexpected removing of product in cart", productNamesInBasketArea.contains("iPhone 5"));
+		
+		// d
+		System.out.println(quantityOfProductsInBasketArea);
 	}
 	// *************************************
 	

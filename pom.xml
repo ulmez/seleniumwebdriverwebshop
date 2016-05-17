@@ -6,6 +6,8 @@
   
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  	<property name="java.target" value="1.7" />
+	<property name="java.source" value="1.7" />
   </properties>
   
   <dependencies>
