@@ -46,27 +46,27 @@ public class ProductCategoryFlikVerifyAllProductCategoriesTest {
 		action.moveToElement(driver.findElement(By.xpath("//*[@href='http://store.demoqa.com/products-page/product-category/']"))).build().perform();
 		driver.findElement(By.id("menu-item-34")).click();
 		assertEquals("Unexpected category calue", "Accessories", driver.findElement(By.xpath("//*[@class='entry-title']")).getText());
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		
 		action.moveToElement(driver.findElement(By.xpath("//*[@href='http://store.demoqa.com/products-page/product-category/']"))).build().perform();
 		driver.findElement(By.id("menu-item-35")).click();
 		assertEquals("Unexpected category calue", "iMacs", driver.findElement(By.xpath("//*[@class='entry-title']")).getText());
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		
 		action.moveToElement(driver.findElement(By.xpath("//*[@href='http://store.demoqa.com/products-page/product-category/']"))).build().perform();
 		driver.findElement(By.id("menu-item-36")).click();
 		assertEquals("Unexpected category calue", "iPads", driver.findElement(By.xpath("//*[@class='entry-title']")).getText());
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		
 		action.moveToElement(driver.findElement(By.xpath("//*[@href='http://store.demoqa.com/products-page/product-category/']"))).build().perform();
 		driver.findElement(By.id("menu-item-37")).click();
 		assertEquals("Unexpected category calue", "iPhones", driver.findElement(By.xpath("//*[@class='entry-title']")).getText());
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		
 		action.moveToElement(driver.findElement(By.xpath("//*[@href='http://store.demoqa.com/products-page/product-category/']"))).build().perform();
 		driver.findElement(By.id("menu-item-38")).click();
 		assertEquals("Unexpected category calue", "iPods", driver.findElement(By.xpath("//*[@class='entry-title']")).getText());
-		Thread.sleep(2000);
+		Thread.sleep(5000);
 		
 		action.moveToElement(driver.findElement(By.xpath("//*[@href='http://store.demoqa.com/products-page/product-category/']"))).build().perform();
 		driver.findElement(By.id("menu-item-39")).click();

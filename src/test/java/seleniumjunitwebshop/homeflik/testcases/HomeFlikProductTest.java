@@ -103,7 +103,7 @@ public class HomeFlikProductTest {
 			}
 			
 			try {
-				Thread.sleep(4000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -120,7 +120,7 @@ public class HomeFlikProductTest {
 			((WebElement) selectedSlides.get(i)).click();
 			
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(5000);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
