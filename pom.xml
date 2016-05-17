@@ -3,7 +3,7 @@
   <groupId>SeleniumJUnitWebshop</groupId>
   <artifactId>seleniumjunitwebshop</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  kjksad
+  
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   	
@@ -34,10 +34,6 @@
 		<groupId>junit</groupId>
 		<artifactId>junit</artifactId>
 		<version>4.12</version>
-	</dependency>
-		<dependency>
-		<groupId>UFFE</groupId>
-	
 	</dependency>
 	<dependency>
 		<groupId>org.seleniumhq.selenium</groupId>
