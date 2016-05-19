@@ -57,6 +57,9 @@ public class CheckoutYourCartTest {
 	@FindBy(xpath ="/html/body/div[2]/div/div/div/div/div/article/div/div[2]/div[1]/table/tbody/tr[2]/td[6]/form/input[4]")
 	WebElement removeProductButton;
 	
+	@FindBy(xpath ="//*[@class='pricedisplay']")
+	WebElement priceDisplay;
+	
 	@BeforeClass
 	public static void getBeforeClass() {
 		//driver.get("http://store.demoqa.com/");
@@ -79,7 +82,7 @@ public class CheckoutYourCartTest {
 	}
 	
 	// 6. a) *******************************
-	@Test
+	/*@Test
 	public void verifyEmptyBasketTest() {
 		// i.
 		checkoutBasketButton.click();
@@ -88,7 +91,7 @@ public class CheckoutYourCartTest {
 		
 		// ii.
 		assertFalse("Unexpected cart area", isWebElementPresent(By.xpath("//*[@class='slide1']")));
-	}
+	}*/
 	// *************************************
 	
 	// 6.) *********************************
@@ -144,10 +147,21 @@ public class CheckoutYourCartTest {
 		// c
 		removeProductButton.click();
 		
+		String priceDisplayFirst = priceDisplay.getText().substring(0, priceDisplay.getText().length() - 1);
+		
 		assertFalse("Unexpected removing of product in cart", productNamesInBasketArea.contains("iPhone 5"));
 		
 		// d
-		System.out.println(quantityOfProductsInBasketArea);
+		//System.out.println(quantityOfProductsInBasketArea.get(0).getAttribute("value"));
+		quantityOfProductsInBasketArea.get(0).clear();
+		quantityOfProductsInBasketArea.get(0).sendKeys("3");
+		
+		driver.findElement(By.xpath("/html/body/div[2]/div/div/div/div/div/article/div/div[2]/div[1]/table/tbody/tr[2]/td[3]/form/input[4]")).click();
+		//quantityOfProductsInBasketArea.get(1).click();
+		String priceDisplaySecond = priceDisplay.getText().substring(0, priceDisplay.getText().length() - 1);
+		
+		System.out.println(priceDisplayFirst);
+		System.out.println(priceDisplaySecond);
 	}
 	// *************************************
 	
